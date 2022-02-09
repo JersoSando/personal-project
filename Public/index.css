@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Cinzel', serif;
+      /* font-family: 'Shadows Into Light', cursive; */
+    font-weight: 250px;
+    background-color: #FAF9F9;
+    height:100vh;
+}
+/* HEADING */
+header{
+    height: fit-content;
+    width:fit-content;
+    background-color: #FFD6BA;
+}
+.logo{
+    display:flex;
+    align-items: center;
+    margin-left: 10px;
+}
+.logo:hover{
+    cursor: pointer;
+}
+#flower{
+    height: 80%;
+    width: 20%;
+    border-radius: 50px;
+}
+
+#front{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+    margin-left: 30%;
+    margin-bottom: 15px;
+}
+#cart-pic{
+    height: auto;
+    width: 10%;
+}
+
+.sign-up{
+    margin-left: 10px;
+}
+
+/* middle naviagtion */
+nav {
+    display:flex;
+    align-items:center;
+    justify-content: space-around;
+}
+
+/* main div */
+.item{
+    height:200px;
+    width:200px;
+    display: flex;
+    /* align-items: center;
+    justify-content: space-evenly; */
+}
+
+.item-cards{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.product{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    background-color: #BEE3DB;
+    height: 450px;
+    width: 300px;
+    
+}
+
+footer{
+    background-color: #FFD6BA;
+    height: 150px;
+    display:flex;
+    margin-top: 5%;
+}
+
+table.links{
+    margin:auto;
+    padding: 20px;
+    width: 20%;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.description{
+    margin-left: 5%;
+}
+
+.signup-box{
+    background-color: #BEE3DB;
+    display:flex;
+    justify-content: center;
+    height: 80vh;
+}
+
+.login-box{
+    background-color: #BEE3DB;
+    display:flex;
+    justify-content: center;
+    height: 80vh;
+}
