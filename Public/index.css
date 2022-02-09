@@ -56,6 +56,10 @@ nav {
     justify-content: space-around;
 }
 
+.nav-links:hover{
+    color: #555B6E;
+    cursor: pointer;
+}
 /* main div */
 .item{
     height:200px;
@@ -114,4 +118,9 @@ table.links{
     display:flex;
     justify-content: center;
     height: 80vh;
+}
+
+.add-to-cart:hover{
+    background-color: #89B0AE;
+    color: white;
 }

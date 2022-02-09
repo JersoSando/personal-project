@@ -7,7 +7,27 @@ const baseUrl = 'http://localhost:5000'
 const signUpForm = document.querySelector('#submit-button');
 const loginPage = document.querySelector('#login-btn')
 const logo = document.querySelector(".logo")
+const body = document.querySelector('body');
 
+const plannerBtn = document.querySelector('#planner-btn')
+const plannerPadBtn = document.querySelector('#planner-pad-btn')
+const journalBtn = document.querySelector('#journal-btn')
+const itemCounter = document.querySelector('#bag-counter')
+let count = 0;
+
+// adding items to cart
+const addToCart = () => {
+    count = count + 1;
+    if (count === 1) {
+        itemCounter.textContent = '1 item'
+    } else {
+        itemCounter.textContent = count + ' items'
+    }
+}
+
+plannerBtn.addEventListener('click', addToCart);
+plannerPadBtn.addEventListener('click', addToCart);
+journalBtn.addEventListener('click', addToCart);
 
 
 
@@ -20,18 +40,22 @@ const returnHome = () =>{
 
 logo.addEventListener('click', returnHome);
 
+body.addEventListener('load', (event) => {
+    console.log('yooo we in body', event);
+});
+
 // axios.post(sign up)
 const displayUser = async (id) => {
     console.log('made it inside display user', id)
     await axios.get(`${baseUrl}/stationery/user/${id}`)
         .then(res => {
-            // window.location.replace("./index.html")
             console.log('what is res data:: ', res)
             const newDiv = document.createElement('div')
             const newContent = document.createTextNode(`Hello, ${res.data.firstName}`)
             newDiv.appendChild(newContent);
-            const cart = document.getElementsByClassName('cart')
-            document.getElementById('front').appendChild(newDiv);
+            // const cart = document.getElementsByClassName('cart')
+            document.querySelector('cart').appendChild(newDiv);
+            window.location = "./index.html";
         })
     // direct user to index.html with user's name on header
 }
@@ -59,7 +83,7 @@ const fetchUser = async (event) => {
         })
         .catch(err => {
             console.log('what be err', err)
-            window.alert(err.data)
+            window.alert(err)
         })
 } // end of fetch user
 
@@ -88,6 +112,7 @@ signUpForm && signUpForm.addEventListener('click', (elem) => {
     axios.post(`${baseUrl}/stationery/user`, newUser)
         .then(res => {
             console.log('made it inside the axios func: ', res)
+            window.onload = () => {console.log('just ran window load func')}
             displayUser(res.data.id)
         })
         .catch(err => console.log(err))
