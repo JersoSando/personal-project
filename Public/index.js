@@ -25,9 +25,9 @@ const addToCart = () => {
     }
 }
 
-plannerBtn.addEventListener('click', addToCart);
-plannerPadBtn.addEventListener('click', addToCart);
-journalBtn.addEventListener('click', addToCart);
+plannerBtn && plannerBtn.addEventListener('click', addToCart);
+plannerPadBtn && plannerPadBtn.addEventListener('click', addToCart);
+journalBtn && journalBtn.addEventListener('click', addToCart);
 
 
 
@@ -40,9 +40,9 @@ const returnHome = () =>{
 
 logo.addEventListener('click', returnHome);
 
-body.addEventListener('load', (event) => {
-    console.log('yooo we in body', event);
-});
+// body.addEventListener('load', (event) => {
+//     console.log('yooo we in body', event);
+// });
 
 // axios.post(sign up)
 const displayUser = async (id) => {
@@ -54,7 +54,7 @@ const displayUser = async (id) => {
             const newContent = document.createTextNode(`Hello, ${res.data.firstName}`)
             newDiv.appendChild(newContent);
             // const cart = document.getElementsByClassName('cart')
-            document.querySelector('cart').appendChild(newDiv);
+            document.querySelector('.cart').appendChild(newDiv);
             window.location = "./index.html";
         })
     // direct user to index.html with user's name on header
@@ -100,24 +100,31 @@ signUpForm && signUpForm.addEventListener('click', (elem) => {
     let password = document.getElementById('password-input').value
     let rePassword = document.getElementById('repassword').value
 
-    // write logic make make sure the passwords match, and if they dont
-    // do something that lets the user know that the passwords did not match.
-    const newUser = {
-        firstName,
-        lastName,
-        email,
-        password
+    if(password !== rePassword){
+        window.alert('Passwords do not match')
+        return
+    }else{
+        const newUser = {
+            firstName,
+            lastName,
+            email,
+            password,
+        }
+    
+        axios.post(`${baseUrl}/stationery/user`, newUser)
+            .then(res => {
+                console.log('made it inside the axios func: ', res)
+                window.onload = () => {console.log('just ran window load func')}
+                displayUser(res.data.id)
+            })
+            .catch(err => console.log(err))
     }
 
-    axios.post(`${baseUrl}/stationery/user`, newUser)
-        .then(res => {
-            console.log('made it inside the axios func: ', res)
-            window.onload = () => {console.log('just ran window load func')}
-            displayUser(res.data.id)
-        })
-        .catch(err => console.log(err))
-})
+    // write logic make make sure the passwords match, and if they dont
+    // do something that lets the user know that the passwords did not match.
     
+})// end of function
+
     
 loginPage && loginPage.addEventListener('click', fetchUser)
 
