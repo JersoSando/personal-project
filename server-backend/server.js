@@ -35,8 +35,6 @@ const getUser = (req, res) => {
     let reqId = req.params.userId
     let result = users.filter(elem => +elem.id === +reqId)
 
-    console.log('what is result', result, users)
-
     res.status(200).send(result[0])
     return;
 }
@@ -50,14 +48,8 @@ const loginUser = (req, res) => {
 
     if (email && password) {
         let login = users.filter(elem => elem.email === email && elem.password === password)
-        // if (login.length > 0){
-        //     res.status(200).send('user found')
-        // } else{
-        //     res.status(400).send('user not found')
-        // }
-        login.length > 0 ? res.status(200).send({message: `hello ${login[0].firstName}`, isLoggedIn: true}) : res.status(200).send({message: `did not find user, please try again to login`, isLoggedIn: false})
+        login.length > 0 ? res.status(200).send({message: `hello ${login[0].firstName}`, isLoggedIn: true, userId: login[0].id}) : res.status(200).send({message: `did not find user, please try again to login`, isLoggedIn: false})
     } else {
-        // res.writeHead(400, 'invalid entry, please try again', {'content-type': 'text/plain'})
         res.status(400).send('invalid entry, please try again') 
     }
     return;
